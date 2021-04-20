@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux";
-import { handleAnswerQuestion } from "../../actions/shared";
-import QuestionResults from "./QuestionResults";
+import { connect } from 'react-redux';
+import { handleAnswerQuestion } from '../../actions/shared';
+import QuestionResults from './QuestionResults';
 
 class QuestionPoll extends Component {
     constructor() {
         super();
         this.state = {
-            selectedOption: "optionOne",
+            selectedOption: 'optionOne',
         };
         this.onValueChange = this.onValueChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,18 +55,18 @@ class QuestionPoll extends Component {
                                 <div>
                                     <label>
                                         <input
-                                            type="radio"
-                                            name="poll"
-                                            value="optionOne"
+                                            type='radio'
+                                            name='poll'
+                                            value='optionOne'
                                             checked={this.state.selectedOption === 'optionOne'}
                                             onChange={this.onValueChange}/>
                                         {question.optionOne.text}
                                     </label>
                                     <label>
                                         <input
-                                            type="radio"
-                                            name="poll"
-                                            value="optionTwo"
+                                            type='radio'
+                                            name='poll'
+                                            value='optionTwo'
                                             checked={this.state.selectedOption === 'optionTwo'}
                                             onChange={this.onValueChange}
                                         />

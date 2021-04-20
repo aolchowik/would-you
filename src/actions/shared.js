@@ -1,7 +1,7 @@
-import { hideLoading, showLoading } from "react-redux-loading";
-import { getInitialData, saveQuestionAnswer } from "../utils/api";
-import { getUsers, addAnsweredQuestion } from "./users";
-import { getQuestions, answerQuestion } from "./questions";
+import { hideLoading, showLoading } from 'react-redux-loading';
+import { getInitialData, saveQuestionAnswer } from '../utils/api';
+import { getUsers, addAnsweredQuestion } from './users';
+import { getQuestions, answerQuestion } from './questions';
 
 export function handleInitialData () {
     return (dispatch) => {

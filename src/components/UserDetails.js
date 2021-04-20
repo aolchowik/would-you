@@ -1,6 +1,6 @@
-import React, {Component, Fragment} from 'react'
-import { connect } from "react-redux";
-import { setAuthedUser } from "../actions/authedUser";
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { setAuthedUser } from '../actions/authedUser'
 
 class UserDetails extends Component {
     handleLogout = (event) => {

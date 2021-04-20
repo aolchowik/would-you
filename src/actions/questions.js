@@ -1,5 +1,5 @@
 import { saveQuestion } from '../utils/api'
-import { showLoading, hideLoading } from "react-redux-loading";
+import { showLoading, hideLoading } from 'react-redux-loading';
 
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const GET_QUESTIONS = 'GET_QUESTIONS'

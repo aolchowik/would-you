@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import { connect } from "react-redux";
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
 
@@ -44,7 +44,7 @@ class Welcome extends Component {
                 <h4>Welcome to the Would You Rather App!</h4>
                 <form onSubmit={this.handleSubmit}>
                     <h3>Sign In</h3>
-                    <select id="authedUser" value={option} onChange={this.handleChange}>
+                    <select id='authedUser' value={option} onChange={this.handleChange}>
                         <option key='chooseUser' value=''>Select User</option>
                         {users.map((user) => {
                             return <option key={user.id} value={user.id}>{user.name}</option>

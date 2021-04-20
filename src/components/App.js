@@ -1,18 +1,18 @@
-import React, {Component, Fragment} from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import {BrowserRouter as Router, Route } from 'react-router-dom';
-import { Switch } from 'react-router';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Switch } from 'react-router'
 import LoadingBar from 'react-redux-loading'
-import QuestionPoll from './question-poll-form/QuestionPoll';
-import NewQuestion from './NewQuestion';
+import QuestionPoll from './question-poll-form/QuestionPoll'
+import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import Welcome from './Welcome'
 import Home from './Home'
-import Nav from './Nav';
+import Nav from './Nav'
 import Auth from './Auth'
 import isEmpty from 'lodash/isEmpty'
-import UserDetails from "./UserDetails";
+import UserDetails from './UserDetails'
 
 class App extends Component {
     componentDidMount() {

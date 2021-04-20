@@ -1,0 +1,11 @@
+#IDE
+.idea
+
+#node
+node_modules
+
+#build
+es6
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

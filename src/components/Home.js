@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Question from "./question-list/Question";
+import Question from './question-list/Question';
 
 class Home extends Component {
     state = {

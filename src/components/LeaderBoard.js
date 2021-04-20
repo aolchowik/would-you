@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
+import sortBy from 'lodash/sortBy'
 
 class LeaderBoard extends Component {
     render() {
@@ -47,7 +48,7 @@ class LeaderBoard extends Component {
 }
 
 function mapStateToProps({users}) {
-    const leaderBoardList = Object.values(users).map((user) => {
+    const rawLeaderBoardList = Object.values(users).map((user) => {
         return {
             user: {
                 name: user.name,
@@ -58,6 +59,7 @@ function mapStateToProps({users}) {
             createdQuestions: user.questions.length
         }
     })
+    const leaderBoardList = sortBy(rawLeaderBoardList, 'score').reverse()
 
     return {
         leaderBoardList
