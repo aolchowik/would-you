@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import sortBy from 'lodash/sortBy'
+import PropTypes from 'prop-types';
 
 class LeaderBoard extends Component {
     render() {
@@ -46,6 +47,10 @@ class LeaderBoard extends Component {
         )
     }
 }
+
+LeaderBoard.propTypes = {
+    users: PropTypes.array.isRequired
+};
 
 function mapStateToProps({users}) {
     const rawLeaderBoardList = Object.values(users).map((user) => {

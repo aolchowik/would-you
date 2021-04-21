@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 class QuestionResults extends Component {
     render () {
@@ -38,6 +39,12 @@ class QuestionResults extends Component {
             </Fragment>
         )
     }
+}
+
+QuestionResults.propTypes = {
+    answer: PropTypes.string.isRequired,
+    question: PropTypes.object.isRequired,
+    votes: PropTypes.object.isRequired
 }
 
 export default QuestionResults

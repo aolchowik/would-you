@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../../actions/shared';
 import QuestionResults from './QuestionResults';
+import PropTypes from 'prop-types';
 
 class QuestionPoll extends Component {
     constructor() {
@@ -87,13 +88,21 @@ class QuestionPoll extends Component {
     }
 }
 
+QuestionPoll.propTypes = {
+    answer: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    authedUserDetails: PropTypes.object.isRequired,
+    question: PropTypes.object.isRequired,
+    votes: PropTypes.object.isRequired,
+}
+
 function mapStateToProps({questions, users, authedUser}, props) {
-    const { id } = props.match.params
-    const question = questions[id]
+    const { question_id } = props.match.params
+    const question = questions[question_id]
     const authedUserDetails = users[authedUser]
     const answers = authedUserDetails.answers
     const votesNumber = question.optionOne.votes.length + question.optionTwo.votes.length
-    const answer = answers[id]
+    const answer = answers[question_id]
     const author = users[question.author]
     const votes = {
         all: votesNumber,

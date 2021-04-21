@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 class Question extends Component {
     render() {
@@ -29,7 +30,7 @@ class Question extends Component {
                     <div className='question-info'>
                         <div className='title'>Would you rather:</div>
                         <div className='option-one'>{`...${questionBody}...`}</div>
-                        <Link to={`/question-poll/${id}`}>View Poll</Link>
+                        <Link to={`/questions/${id}`}>View Poll</Link>
                     </div>
                 </div>
             </div>
@@ -37,8 +38,13 @@ class Question extends Component {
     }
 }
 
-function mapStateToProps({users, questions}, {id}) {
-    const question = questions[id]
+Question.propTypes = {
+    author: PropTypes.string.isRequired,
+    question: PropTypes.object.isRequired
+}
+
+function mapStateToProps({users, questions}, {question_id}) {
+    const question = questions[question_id]
     const author = users[question.author]
 
     return {

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { handleInitialData } from '../actions/shared'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Switch } from 'react-router'
@@ -17,7 +18,7 @@ import UserDetails from './UserDetails'
 class App extends Component {
     componentDidMount() {
         if(isEmpty(this.props.authedUser)) {
-            this.props.dispatch(handleInitialData())
+            this.props.handleInitialData()
         }
     }
     render() {
@@ -37,8 +38,8 @@ class App extends Component {
                                 <Route exact path='/' component={Welcome} />
                                 <Auth>
                                     <Route exact path='/home' component={Home} />
-                                    <Route exact path='/question-poll/:id' component={QuestionPoll} />
-                                    <Route exact path='/new' component={NewQuestion} />
+                                    <Route exact path='/questions/:question_id' component={QuestionPoll} />
+                                    <Route exact path='/add' component={NewQuestion} />
                                     <Route exact path='/leaderboard' component={LeaderBoard} />
                                 </Auth>
                             </Switch>
@@ -50,6 +51,12 @@ class App extends Component {
     }
 }
 
+App.propTypes = {
+    handleInitialData : PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+    authedUser: PropTypes.string.isRequired
+};
+
 function mapStateToProps ({ users, authedUser }) {
     return {
         loading: isEmpty(users),
@@ -57,4 +64,4 @@ function mapStateToProps ({ users, authedUser }) {
     }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, { handleInitialData })(App)

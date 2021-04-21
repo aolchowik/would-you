@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 class Welcome extends Component {
     state = {
@@ -59,6 +60,11 @@ class Welcome extends Component {
             </div>
         )
     }
+}
+
+Welcome.propTypes = {
+    users: PropTypes.array.isRequired,
+    authedUser: PropTypes.string.isRequired
 }
 
 function mapStateToProps ({users, authedUser}) {

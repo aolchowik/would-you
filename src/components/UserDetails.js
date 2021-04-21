@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
+import PropTypes from 'prop-types';
 
 class UserDetails extends Component {
     handleLogout = (event) => {
@@ -32,6 +33,11 @@ class UserDetails extends Component {
             </Fragment>
         )
     }
+}
+
+UserDetails.propTypes = {
+    authedUser: PropTypes.string.isRequired,
+    users: PropTypes.array.isRequired,
 }
 
 function mapStateToProps({authedUser, users}) {

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import isEmpty from 'lodash/isEmpty'
+import PropTypes from "prop-types";
 
 class Auth extends Component {
     render() {
@@ -13,6 +14,10 @@ class Auth extends Component {
         )
     }
 }
+
+Auth.propTypes = {
+    authedUser: PropTypes.string.isRequired
+};
 
 function mapStateToProps({authedUser}) {
     return {

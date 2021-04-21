@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './question-list/Question';
+import sortBy from "lodash/sortBy";
+import PropTypes from 'prop-types';
 
 class Home extends Component {
     state = {
@@ -27,7 +29,7 @@ class Home extends Component {
                 {unAnsweredQuestions.map((question) => {
                     return (
                         <li className='question-list-element' key={question.id}>
-                            <Question id={question.id} />
+                            <Question question_id={question.id} />
                         </li>
                     )
                 })}
@@ -36,7 +38,7 @@ class Home extends Component {
                     {answeredQuestions.map((question) => {
                         return (
                             <li className='question-list-element' key={question.id}>
-                                <Question id={question.id} />
+                                <Question question_id={question.id} />
                             </li>
                         )
                     })}
@@ -46,6 +48,11 @@ class Home extends Component {
     }
 }
 
+Home.propTypes = {
+    answeredQuestions: PropTypes.array.isRequired,
+    unAnsweredQuestions: PropTypes.array.isRequired,
+}
+
 function mapStateToProps({questions, users, authedUser}) {
     const allQuestions = Object.values(questions);
     const userAnsweredQuestions = Object.keys(users[authedUser].answers)
@@ -53,8 +60,8 @@ function mapStateToProps({questions, users, authedUser}) {
     const answeredQuestions = allQuestions.filter( ( el ) => userAnsweredQuestions.includes( el.id ));
 
     return {
-        answeredQuestions,
-        unAnsweredQuestions,
+        answeredQuestions: sortBy(answeredQuestions, 'timestamp').reverse(),
+        unAnsweredQuestions: sortBy(unAnsweredQuestions, 'timestamp').reverse(),
     }
 }
 
