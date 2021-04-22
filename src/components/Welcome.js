@@ -26,7 +26,6 @@ class Welcome extends Component {
         const { option } = this.state
         const { dispatch, redirectTo } = this.props
 
-        console.log('redirect', redirectTo)
         dispatch(setAuthedUser(option))
 
         this.setState(() => ({
