@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../../actions/shared';
 import QuestionResults from './QuestionResults';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom'
+import isEmpty from 'lodash/isEmpty'
 
 class QuestionPoll extends Component {
     constructor() {
@@ -30,6 +32,11 @@ class QuestionPoll extends Component {
 
     render() {
         const { author, question, answer, votes } = this.props
+        const shouldRedirectTo404 = isEmpty(question)
+
+        if(shouldRedirectTo404) {
+            return (<Redirect to='/not-found' />)
+        }
         const {
             name,
             avatarURL
@@ -92,22 +99,30 @@ QuestionPoll.propTypes = {
     answer: PropTypes.string,
     author: PropTypes.object.isRequired,
     authedUserDetails: PropTypes.object.isRequired,
-    question: PropTypes.object.isRequired,
+    question: PropTypes.object,
     votes: PropTypes.object.isRequired,
 }
 
 function mapStateToProps({questions, users, authedUser}, props) {
     const { question_id } = props.match.params
     const question = questions[question_id]
-    const authedUserDetails = users[authedUser]
-    const answers = authedUserDetails.answers
-    const votesNumber = question.optionOne.votes.length + question.optionTwo.votes.length
-    const answer = answers[question_id]
-    const author = users[question.author]
-    const votes = {
-        all: votesNumber,
-        optionOne: question.optionOne.votes.length,
-        optionTwo: question.optionTwo.votes.length,
+
+    let answer = ''
+    let author = {}
+    let authedUserDetails = {}
+    let votes = {}
+
+    if(question) {
+        const authedUserDetails = users[authedUser]
+        const answers = authedUserDetails.answers
+        const votesNumber = question.optionOne.votes.length + question.optionTwo.votes.length
+        answer = answers[question_id]
+        author = users[question.author]
+        votes = {
+            all: votesNumber,
+            optionOne: question.optionOne.votes.length,
+            optionTwo: question.optionTwo.votes.length,
+        }
     }
 
     return {

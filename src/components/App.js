@@ -14,6 +14,7 @@ import Nav from './Nav'
 import Auth from './Auth'
 import isEmpty from 'lodash/isEmpty'
 import UserDetails from './UserDetails'
+import NotFoundPage from "./NotFoundPage";
 
 class App extends Component {
     state = {
@@ -45,6 +46,7 @@ class App extends Component {
                             <Switch>
                                 <Route exact path='/' render={() => <Welcome redirectTo={this.state.redirectTo} />} />
                                 <Auth>
+                                    <Route exact path='/not-found' component={NotFoundPage} />
                                     <Route exact path='/home' component={Home} />
                                     <Route exact path='/questions/:question_id' component={QuestionPoll} />
                                     <Route exact path='/add' component={NewQuestion} />

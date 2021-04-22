@@ -41,7 +41,7 @@ class Welcome extends Component {
         const availablePages = getAvailablePages()
 
         if(shouldRedirect) {
-            return (availablePages.includes(redirectTo.split('/')[1])) ? <Redirect to={redirectTo} /> : <Redirect to='/home' />
+            return (availablePages.includes(redirectTo.split('/')[1])) ? <Redirect to={redirectTo} /> : <Redirect to='/not-found' />
         }
 
         return (
