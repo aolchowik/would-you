@@ -21,6 +21,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.setState({redirectTo: window.location.pathname})
         if(isEmpty(this.props.authedUser)) {
             this.props.handleInitialData()
         }

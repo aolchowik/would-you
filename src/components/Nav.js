@@ -12,7 +12,7 @@ class Nav extends Component {
         return (
             <nav className='nav'>
                 <ul>
-                    <li><NavLink to='/' exact activeClassName='active'>Home</NavLink></li>
+                    <li><NavLink to='/home' exact activeClassName='active'>Home</NavLink></li>
                     <li><NavLink to='/add' exact activeClassName='active' onClick={this.handleClick}>New Question</NavLink></li>
                     <li><NavLink to='/leaderboard' exact activeClassName='active' onClick={this.handleClick}>Leader Board</NavLink></li>
                 </ul>

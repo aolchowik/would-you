@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import {getAvailablePages} from "../helpers/common";
 
 class Welcome extends Component {
     state = {
@@ -25,6 +26,7 @@ class Welcome extends Component {
         const { option } = this.state
         const { dispatch, redirectTo } = this.props
 
+        console.log('redirect', redirectTo)
         dispatch(setAuthedUser(option))
 
         this.setState(() => ({
@@ -37,9 +39,10 @@ class Welcome extends Component {
     render() {
         const { users } = this.props
         const { option, shouldRedirect, redirectTo } = this.state
+        const availablePages = getAvailablePages()
 
         if(shouldRedirect) {
-            return (<Redirect to={redirectTo} />)
+            return (availablePages.includes(redirectTo.split('/')[1])) ? <Redirect to={redirectTo} /> : <Redirect to='/home' />
         }
 
         return (
