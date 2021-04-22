@@ -49,7 +49,7 @@ class LeaderBoard extends Component {
 }
 
 LeaderBoard.propTypes = {
-    users: PropTypes.array.isRequired
+    users: PropTypes.array
 };
 
 function mapStateToProps({users}) {

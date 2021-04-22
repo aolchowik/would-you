@@ -16,7 +16,7 @@ class Auth extends Component {
 }
 
 Auth.propTypes = {
-    authedUser: PropTypes.string.isRequired
+    authedUser: PropTypes.string
 };
 
 function mapStateToProps({authedUser}) {

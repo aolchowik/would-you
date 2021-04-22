@@ -89,8 +89,8 @@ class QuestionPoll extends Component {
 }
 
 QuestionPoll.propTypes = {
-    answer: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
+    answer: PropTypes.string,
+    author: PropTypes.object.isRequired,
     authedUserDetails: PropTypes.object.isRequired,
     question: PropTypes.object.isRequired,
     votes: PropTypes.object.isRequired,

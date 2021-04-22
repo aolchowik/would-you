@@ -36,8 +36,8 @@ class UserDetails extends Component {
 }
 
 UserDetails.propTypes = {
-    authedUser: PropTypes.string.isRequired,
-    users: PropTypes.array.isRequired,
+    authedUser: PropTypes.string,
+    users: PropTypes.object.isRequired,
 }
 
 function mapStateToProps({authedUser, users}) {

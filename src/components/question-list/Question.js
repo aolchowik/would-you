@@ -39,7 +39,7 @@ class Question extends Component {
 }
 
 Question.propTypes = {
-    author: PropTypes.string.isRequired,
+    author: PropTypes.object.isRequired,
     question: PropTypes.object.isRequired
 }
 

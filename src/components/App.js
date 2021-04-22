@@ -16,11 +16,18 @@ import isEmpty from 'lodash/isEmpty'
 import UserDetails from './UserDetails'
 
 class App extends Component {
+    state = {
+        redirectTo: '/home',
+    }
+
     componentDidMount() {
         if(isEmpty(this.props.authedUser)) {
             this.props.handleInitialData()
         }
     }
+
+    getRedirect = (redirectTo) => this.setState({redirectTo})
+
     render() {
         return (
             <Router>
@@ -28,14 +35,14 @@ class App extends Component {
                     <LoadingBar />
                     <div className='container'>
                         <div className='top-nav'>
-                            <Nav/>
+                            <Nav getRedirect={this.getRedirect}/>
                             <UserDetails />
                         </div>
                         {this.props.loading
                             ? null
                             :
                             <Switch>
-                                <Route exact path='/' component={Welcome} />
+                                <Route exact path='/' render={() => <Welcome redirectTo={this.state.redirectTo} />} />
                                 <Auth>
                                     <Route exact path='/home' component={Home} />
                                     <Route exact path='/questions/:question_id' component={QuestionPoll} />
@@ -54,7 +61,7 @@ class App extends Component {
 App.propTypes = {
     handleInitialData : PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
-    authedUser: PropTypes.string.isRequired
+    authedUser: PropTypes.string
 };
 
 function mapStateToProps ({ users, authedUser }) {

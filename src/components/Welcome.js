@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 class Welcome extends Component {
     state = {
         option: '',
-        toHome: false
+        shouldRedirect: false,
+        redirectTo: '/home'
     }
 
     componentDidMount() {
@@ -22,22 +23,23 @@ class Welcome extends Component {
         event.preventDefault()
 
         const { option } = this.state
-        const { dispatch } = this.props
+        const { dispatch, redirectTo } = this.props
 
         dispatch(setAuthedUser(option))
 
         this.setState(() => ({
             option: '',
-            toHome: true
+            shouldRedirect: true,
+            redirectTo: redirectTo
         }))
     }
 
     render() {
         const { users } = this.props
-        const { option, toHome } = this.state
+        const { option, shouldRedirect, redirectTo } = this.state
 
-        if(toHome) {
-            return (<Redirect to='/home' />)
+        if(shouldRedirect) {
+            return (<Redirect to={redirectTo} />)
         }
 
         return (
@@ -63,8 +65,9 @@ class Welcome extends Component {
 }
 
 Welcome.propTypes = {
+    redirectTo: PropTypes.string,
     users: PropTypes.array.isRequired,
-    authedUser: PropTypes.string.isRequired
+    authedUser: PropTypes.string
 }
 
 function mapStateToProps ({users, authedUser}) {
